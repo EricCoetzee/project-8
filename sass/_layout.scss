@@ -1,7 +1,7 @@
 .container{
 
     max-width: 120rem;
-    margin: 8rem auto;
+    margin: 5rem auto;
     background-color: var(--light-color-2);
     box-shadow: var(--boxsh);
 }
@@ -10,6 +10,10 @@
 .header{
     background-color: var(--light-color-1);
     height: 6rem;
+    font-size: var(--header-font);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
 }
 
@@ -19,11 +23,15 @@
 }
 
 .sidebar{
-    background-color: var(--dark-color-1);
+    background-color: var(--dark-color-2);
     flex: 0 0 18%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.hotel-view{
-    background-color: /* var(--light-color-1) */ orangered;
+.vehicle-view{
+    background-color:  var(--light-color-2); 
     flex: 1;
+    height: 80vh;
 }
