@@ -32,13 +32,16 @@
         margin-right: -3.5rem;
 
         @media only screen and (max-width: $bp-smallest) {
-            padding: .7rem 1rem;
+            width: 87%; 
         }
 
         &:focus{
             width: 100%;
             outline: none;
             background-color: var(--light-color-3);
+            @media only screen and (max-width: $bp-smallest) {
+                width: 92%; 
+            }
 
         }
         &::-webkit-input-placeholder{
@@ -429,17 +432,21 @@
         height: 1rem;
         width: 1rem;
         margin-right: .5rem;
-        //older browsers
-        /* background-image: url(../../img/chevron-thin-right.svg);
-        background-size: cover; */
 
         //new masks
-        background-color: var(--main-color);
+
+        @supports (-webkit-mask-image: url()) or (mask-image: url()){
+            background-color: var(--main-color);
+            -webkit-mask-image: url(../../img/chevron-thin-right.svg);
+            mask-image: url(../../img/chevron-thin-right.svg);
+            -webkit-mask-size: cover;
+            mask-size: cover;
+            background-image: none;
+        }
+        //older browsers
+        background-image: url(../../img/chevron-thin-right.svg);
+        background-size: cover; 
         
-        -webkit-mask-image: url(../../img/chevron-thin-right.svg);
-        mask-image: url(../../img/chevron-thin-right.svg);
-        -webkit-mask-size: cover;
-        mask-size: cover;
 
     }
 }
