@@ -14,6 +14,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    @media only screen and (max-width: $bp-smallest) {
+        order: 1;
+        background-color: var(--light-color-2);
+        flex: 0 0 100%;
+    }
     &__input{
         color: inherit;
         font-family: inherit;
@@ -25,6 +30,10 @@
         width: 90%;
         transition: all .2s;
         margin-right: -3.5rem;
+
+        @media only screen and (max-width: $bp-smallest) {
+            padding: .7rem 1rem;
+        }
 
         &:focus{
             width: 100%;
@@ -119,13 +128,14 @@
    
 }
 
+
+
 // ////////////////////////////
 //Side navigation
 
 
 
 .side-nav{
-
     font-size: inherit;
     list-style: none;
     margin-top: 3.5rem;
@@ -149,8 +159,15 @@
 
         &:not(:last-child){
             margin-bottom: .5rem;
-            
+
+            @media only screen and (max-width: $bp-med) {
+                margin: 0;
+            }
         }
+
+        @media only screen and (max-width: $bp-med) {
+            flex: 1;
+        }        
 
         &:hover::before, &--active::before{
             transform: scaleY(1);
@@ -159,7 +176,7 @@
         }
 
         &:active::before{
-            background-color: orangered;
+            background-color: var(--main-color);
         }
     }
 
@@ -176,6 +193,17 @@
             display: flex;
             align-items: center;
 
+            @media only screen and (max-width: $bp-med) {
+                justify-content: center;
+                padding: 2rem;
+            } 
+                
+            @media only screen and (max-width: $bp-small) {
+                flex-direction: column;
+                padding: .75rem;
+            } 
+
+
         }
         
     }
@@ -186,9 +214,20 @@
       height: 1.75rem;
       margin-right: 3rem;
 
+      @media only screen and (max-width: $bp-small) {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: 0;
+        margin-bottom: .7rem;
+    } 
+
       
     }
 
+    @media only screen and (max-width: $bp-med) {
+        display: flex;
+        margin: 0;
+    }
     
 
 }
@@ -200,6 +239,9 @@
     font-size: 1.2rem;
     padding: 2rem;
     text-align: center;
+    @media only screen and (max-width: $bp-med) {
+        display: none;
+    }
 }
 
 
@@ -246,6 +288,10 @@
         letter-spacing: 1px;
         padding: 1.5rem 3rem;
         text-transform: uppercase;
+        @media only screen and (max-width: $bp-small) {
+            font-size: 1.8rem;
+            padding: 1.25rem 2rem;
+        } 
     }
 
     &__stars{
@@ -280,12 +326,18 @@
         justify-content: center;
         flex-direction: column;
         align-items: center;
+        @media only screen and (max-width: $bp-small) {
+            margin-left: 1rem;
+        } 
     }
 
 
     &__rating-average{
         font-size: 2.25rem;
         font-weight: 300;
+        @media only screen and (max-width: $bp-small) {
+            font-size: 1.8rem; 
+        } 
     } 
 
     &__rating-count{
@@ -363,6 +415,10 @@
     padding: 2rem;
     flex-wrap: wrap;
 
+    @media only screen and (max-width: $bp-smallest) {
+        display: block;
+    }
+
     &__item{
         flex: 0 0 50%;
         margin-bottom: 2.5rem;
@@ -404,7 +460,7 @@
     }
 
     &__friend{
-
+        display: flex;
     }
 
     &__friend-photo{
@@ -426,10 +482,14 @@
 .review{
     background-color: var(--light-color-1);
     box-shadow: var(--boxsh);
-    padding: 2.5rem;
+    padding: 3rem;
     margin-bottom: 3.5rem;
     position: relative;
     overflow: hidden;
+    @media only screen and (max-width: $bp-med) {
+        padding: 3rem;
+        margin-bottom: 2rem;
+    }
     &__text{
         z-index: 10; 
 
@@ -492,14 +552,20 @@
 .cta{
     padding: 3.5rem 0;
     text-align: center;
-   flex:  0 0 100%;
+
+   @media only screen and (max-width: $bp-med) {
+    padding: 2rem 0;
+}
 
     &__book-now{
         font-size: 2rem;
         font-weight: 300;
         text-transform: uppercase;
         margin-bottom: 2.5rem;
+        
     }
+
+}
 
     .btn{
         font-size: 1.5rem;
@@ -509,21 +575,43 @@
         border: none;
         background-image: linear-gradient(to right bottom, var(--main-color), var(--main-color-2));
         cursor: pointer;
+        position: relative;
+        overflow: hidden;
         color: var(--light-color-1);
-        &__visible{
+
+        & > * {
+           height: 100%;
+            width: 100%;
+            transition: all .2s;  
             display: inline-block;
+        }
+        &__visible{
             padding: 2rem 7.5rem;
+           
         }
 
         &__invisible{
             position: absolute;
-            display: inline-block;
-            padding: 2rem 7.5rem;
-            height: 100%;
-            width: 100%;
+            padding: 2rem 0;
             left: 0;
             top: -100%;
+            transition: all .2s;
+        }  
+        &:hover{
+            background-image: linear-gradient(to left bottom, var(--main-color), var(--main-color-2));
+        }
+        &:hover &__visible{
+            transform: translateY(100%);
+        }
+
+        &:hover &__invisible{
+            top: 0;
+        }
+
+        &:focus{
+            outline: none;
+            animation: pulsate 1s infinite;
         }
     }
-}
+
  
